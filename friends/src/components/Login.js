@@ -18,8 +18,9 @@ export default function Login(props) {
       .post('http://localhost:5000/api/login', values)
       .then(res => {
         console.log(res);
-        localStorage.setItem('token', res.data.data.payload);
+        localStorage.setItem('token', res.data.payload);
         setValues(initialValues);
+        props.history.push('/friendslist');
       })
       .catch(err => {
         console.log(err);
