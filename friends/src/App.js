@@ -34,7 +34,7 @@ function App() {
             </Link>
           ) : null}
           {isLoggedIn ? <Link to='/addfriend'>Add Friend</Link> : null}
-          <Link to='/friendslist'>Friends</Link>
+          {isLoggedIn ? <Link to='/friendslist'>Friends</Link> : null}
         </nav>
       </header>
       <GlobalState.Provider

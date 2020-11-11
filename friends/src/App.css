@@ -8,15 +8,19 @@ header {
 nav {
   width: 15%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin: 2%;
 }
 
 nav a {
   display: inline-block;
-  color: white;
+  color: black;
+  background: white;
   text-decoration: none;
+  border-radius: 5px;
+  margin: 2%;
+  padding: 1%;
 }
 
 h1 {
