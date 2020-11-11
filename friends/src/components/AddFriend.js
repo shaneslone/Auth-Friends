@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from '../utilis/axiosWithAuth';
 
 import { GlobalState } from '../context/GlobalState';
 
-export default function Login() {
-  const { history, setIsLoggedIn } = useContext(GlobalState);
+export default function AddFriend() {
+  const { history } = useContext(GlobalState);
   const initialValues = {
-    username: '',
-    password: '',
+    name: '',
+    age: '',
+    email: '',
   };
   const [values, setValues] = useState(initialValues);
 
@@ -17,13 +18,9 @@ export default function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios
-      .post('http://localhost:5000/api/login', values)
+    axiosWithAuth()
+      .post('/friends', values)
       .then(res => {
-        console.log(res);
-        localStorage.setItem('token', res.data.payload);
-        setValues(initialValues);
-        setIsLoggedIn(true);
         history.push('/friendslist');
       })
       .catch(err => {
@@ -35,27 +32,38 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            Username:
+            Name:
             <input
-              name='username'
-              type='text'
+              name='name'
+              type='test'
+              value={values.name}
               onChange={handleChange}
-              value={values.username}
             />
           </label>
         </div>
         <div>
           <label>
-            Password:
+            Age:
             <input
-              name='password'
-              type='password'
+              name='age'
+              type='test'
+              value={values.age}
               onChange={handleChange}
-              value={values.password}
             />
           </label>
         </div>
-        <button>Login</button>
+        <div>
+          <label>
+            Email:
+            <input
+              name='email'
+              type='email'
+              value={values.email}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <button>AddFriend</button>
       </form>
     </div>
   );

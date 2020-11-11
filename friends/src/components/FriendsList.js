@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { axiosWithAuth } from '../utilis/axiosWithAuth';
 
 import Friend from './Friend';
+import { GlobalState } from '../context/GlobalState';
 
-export default function FriendsList(props) {
-  const [friends, setFriends] = useState([]);
+export default function FriendsList() {
+  const { friends, setFriends } = useContext(GlobalState);
+
   useEffect(() => {
     axiosWithAuth()
       .get('/friends')
       .then(res => {
-        console.log(res);
         setFriends(res.data);
       })
       .catch(err => {
