@@ -26,3 +26,15 @@ nav a {
 h1 {
   width: 50%;
 }
+.friendsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.friend {
+  width: 10%;
+  border: 1px solid black;
+  margin: 2%;
+  padding: 2%;
+}

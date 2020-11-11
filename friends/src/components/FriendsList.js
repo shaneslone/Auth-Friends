@@ -19,7 +19,7 @@ export default function FriendsList() {
   }, []);
 
   return (
-    <div>
+    <div className='friendsList'>
       {friends.map(friend => (
         <Friend key={friend.id} friend={friend} />
       ))}

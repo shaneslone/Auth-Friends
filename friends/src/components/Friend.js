@@ -26,7 +26,7 @@ export default function Friend(props) {
   };
 
   return (
-    <div>
+    <div className='friend'>
       <h2>{name}</h2>
       <p>Age: {age}</p>
       <p>Email: {email}</p>
