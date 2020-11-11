@@ -4,13 +4,22 @@ import { axiosWithAuth } from '../utilis/axiosWithAuth';
 import { GlobalState } from '../context/GlobalState';
 
 export default function AddFriend() {
-  const { history } = useContext(GlobalState);
+  const {
+    history,
+    isEditing,
+    setIsEditing,
+    valuesToEdit,
+    setValuesToEdit,
+    setFriends,
+  } = useContext(GlobalState);
   const initialValues = {
     name: '',
     age: '',
     email: '',
   };
-  const [values, setValues] = useState(initialValues);
+  const [values, setValues] = useState(
+    isEditing ? valuesToEdit : initialValues
+  );
 
   const handleChange = e => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -18,14 +27,27 @@ export default function AddFriend() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post('/friends', values)
-      .then(res => {
-        history.push('/friendslist');
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (isEditing) {
+      axiosWithAuth()
+        .put(`/friends/${values.id}`, values)
+        .then(res => {
+          setIsEditing(false);
+          setValuesToEdit({});
+          history.push('/friendslist');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      axiosWithAuth()
+        .post('/friends', values)
+        .then(res => {
+          history.push('/friendslist');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
   return (
     <div>
@@ -63,7 +85,7 @@ export default function AddFriend() {
             />
           </label>
         </div>
-        <button>AddFriend</button>
+        <button>{isEditing ? 'Edit Friend' : 'Add Friend'}</button>
       </form>
     </div>
   );

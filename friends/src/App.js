@@ -15,6 +15,8 @@ function App() {
   );
   const [friends, setFriends] = useState([]);
   const history = useHistory();
+  const [isEditing, setIsEditing] = useState(false);
+  const [valuesToEdit, setValuesToEdit] = useState({});
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -44,6 +46,10 @@ function App() {
           setFriends,
           isLoggedIn,
           setIsLoggedIn,
+          isEditing,
+          setIsEditing,
+          valuesToEdit,
+          setValuesToEdit,
         }}
       >
         <Switch>
