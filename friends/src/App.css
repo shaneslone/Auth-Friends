@@ -1,0 +1,40 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+}
+
+nav {
+  width: 15%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 2%;
+}
+
+nav a {
+  display: inline-block;
+  color: black;
+  background: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 2%;
+  padding: 1%;
+}
+
+h1 {
+  width: 50%;
+}
+.friendsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.friend {
+  width: 10%;
+  border: 1px solid black;
+  margin: 2%;
+  padding: 2%;
+}
